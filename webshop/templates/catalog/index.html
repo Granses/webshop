@@ -1,0 +1,290 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+{% load static %}
+		<div id="breadcrumb" class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">{{ title }}</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="/catalog">catalog</a></li>
+							<li class="active">index</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="container">
+				<div class="row text-center">
+<!--					=====================================================-->
+					<div id="aside" class="col-md-3 text-left">
+						<div class="aside">
+							<h3 class="aside-title">Категорії</h3>
+							<div class="checkbox-filter">
+								{% for category in all_categories %}
+								<div class="input-checkbox">
+									<input type="checkbox" id="{{ category.name }}">
+									<label for="{{ category.name }}" style="font-size: 11pt; color: darkcyan; margin-left: 10px;">
+										<span></span>
+										{{ category.name }}
+										<small>()</small>
+									</label>
+								</div>
+								{% endfor %}
+							</div>
+
+						</div>
+						<div class="aside">
+							<h3 class="aside-title">Ціновий фільтр</h3>
+							<div class="price-filter">
+								<div id="price-slider"></div>
+								<div class="input-number price-min">
+									<input id="price-min" type="number">
+									<span class="qty-up">+</span>
+									<span class="qty-down">-</span>
+								</div>
+								<span>-</span>
+								<div class="input-number price-max">
+									<input id="price-max" type="number">
+									<span class="qty-up">+</span>
+									<span class="qty-down">-</span>
+								</div>
+							</div>
+						</div>
+						<div class="aside">
+							<h3 class="aside-title">Виробник</h3>
+							<div class="checkbox-filter">
+								{% for p in all_producers %}
+								<div class="input-checkbox">
+									<input type="checkbox" id="{{ p.name }}">
+									<label for="{{ p.name }}" style="font-size: 11pt; color: darkcyan; margin-left: 10px;">
+										<span></span>
+										{{ p.name }}
+										<small>(578)</small>
+									</label>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+						<div class="aside">
+							<h3 class="aside-title">Топ продажів</h3>
+							<div class="product-widget">
+								<div class="product-img">
+									<img src="{% static './img/product01.png' %}" alt="">
+								</div>
+								<div class="product-body">
+									<p class="product-category">Category</p>
+									<h3 class="product-name"><a href="#">product name goes here</a></h3>
+									<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+								</div>
+							</div>
+							<div class="product-widget">
+								<div class="product-img">
+									<img src="{% static './img/product02.png' %}" alt="">
+								</div>
+								<div class="product-body">
+									<p class="product-category">Category</p>
+									<h3 class="product-name"><a href="#">product name goes here</a></h3>
+									<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+								</div>
+							</div>
+							<div class="product-widget">
+								<div class="product-img">
+									<img src="{% static './img/product03.png' %}" alt="">
+								</div>
+								<div class="product-body">
+									<p class="product-category">Category</p>
+									<h3 class="product-name"><a href="#">product name goes here</a></h3>
+									<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="store" class="col-md-9">
+
+						<div class="store-filter clearfix">
+							<div class="store-sort">
+								<label>
+									Сортування:
+									<select class="input-select">
+										<option value="0">За популярнітю</option>
+										<option value="1">За рейтингом</option>
+										<option value="2">За датою</option>
+										<option value="3">За ціною</option>
+									</select>
+								</label>
+								<label>
+									Пагінація:
+									<select class="input-select">
+										<option value="0">12</option>
+										<option value="1">15</option>
+										<option value="2">18</option>
+										<option value="3">24</option>
+									</select>
+								</label>
+							</div>
+							<ul class="store-grid">
+								<li class="active"><i class="fa fa-th"></i></li>
+								<li><a href="#"><i class="fa fa-th-list"></i></a></li>
+							</ul>
+						</div>
+
+						<div class="products row">
+							{% for product in paginate_products %}
+							<div class="col-md-4 col-xs-6">
+
+								<div class="product">
+
+									<div class="product-img">
+										<img src="/media/{{ product.picture }}" alt="">
+										<div class="product-label">
+											<span class="sale">-30%</span>
+											<span class="new">Новий</span>
+										</div>
+									</div>
+									<div class="product-body">
+										<p class="product-category">{{ product.category }}</p>
+										<h3 class="product-name"><a href="/catalog/details/{{ product.id }}">{{ product.name }}</a></h3>
+										<h4 class="product-price">{{ product.price }}0 грн.</h4>
+										<div class="product-rating">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+										</div>
+										<div class="product-btns">
+											<button class="add-to-wishlist"><i class="fa fa-heart-o without-btn"></i><span class="tooltipp">Обране</span></button>
+											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">порівняння</span></button>
+											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">перегляд</span><a href="/catalog/details/{{ product.id }}"></a></button>
+										</div>
+									</div>
+									<div class="add-to-cart">
+										<input class="add-to-cart1" type="hidden" value="{{ product.id }}">
+										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> До кошика</button>
+									</div>
+								</div>
+
+							</div>
+
+							{% endfor %}
+						</div>
+
+						<div class="store-filter clearfix">
+							<div class="wrap-pagination-info">
+								<nav>
+									<ul class="pagination pagination-lg">
+										{% if paginate_products.has_previous %}
+											<li class="page-item">
+      											<a class="page-link" href="?page=1" aria-label="Previous">
+												<span aria-hidden="true">&laquo;&laquo;</span>
+												<span class="sr-only">Previous</span>
+											  	</a>
+											</li>
+											<li class="page-item">
+												<a class="page-link" href="?page={{ paginate_products.previous_page_number }}" aria-label="Previous">
+													<span aria-hidden="true">&laquo;</span>
+													<span class="sr-only">Previous</span>
+												</a>
+											</li>
+										{% endif %}
+										{% for p in paginate_products.paginator.page_range %}
+										{% if paginate_products.number == p %}
+										<li class="page-item active" >
+											<span class="page-link">
+												{{ p }}
+												<span class="sr-only">(current)</span>
+											</span>
+										</li>
+										{% else %}
+										<li class="page-item">
+											<a class="page-link" href="?page={{ p }}">{{ p }}</a>
+										</li>
+										{% endif %}
+										{% endfor %}
+										{% if paginate_products.has_next %}
+										<li class="page-item">
+											<a class="page-link" href="?page={{ paginate_products.next_page_number  }}" aria-label="Next">
+												<span aria-hidden="true">&raquo; </span>
+												<span class="sr-only">Next</span>
+											</a>
+										</li>
+										<li class="page-item">
+											<a class="page-link" href="?page={{ paginate_products.paginator.num_pages }}" aria-label="Next">
+												<span aria-hidden="true">&raquo;&raquo;</span>
+												<span class="sr-only">last</span>
+											</a>
+										</li>
+										{% endif %}
+									</ul>
+								</nav>
+<!--								<div class="pagination my-paginator">-->
+<!--									<span class="step-links">-->
+<!--										{% if paginate_products.has_previous %}-->
+<!--											<a class="blue" href="?page=1">&laquo; Перша</a>-->
+<!--											<a class="blue" href="?page={{ paginate_products.previous_page_number }}">Попередня</a>-->
+<!--										{% endif %}-->
+
+<!--										<span class="current">-->
+<!--											Сторінка {{  paginate_products.number  }} із-->
+<!--											{{  paginate_products.paginator.num_pages  }}-->
+<!--										</span>-->
+
+<!--										{% if paginate_products.has_next %}-->
+<!--											<a class="red" href="?page={{ paginate_products.next_page_number  }}">Наступна</a>-->
+<!--											<a class="red" href="?page={{ paginate_products.paginator.num_pages }}">Остання &raquo;</a>-->
+<!--										{% endif %}-->
+<!--									</span>-->
+<!--								</div>-->
+							</div>
+<!--							<span class="store-qty">Відобразити 12 зі 100 товарів</span>-->
+<!--							<ul class="store-pagination">-->
+<!--								<li class="active">1</li>-->
+<!--								<li><a href="#">2</a></li>-->
+<!--								<li><a href="#">3</a></li>-->
+<!--								<li><a href="#">4</a></li>-->
+<!--								<li><a href="#"><i class="fa fa-angle-right"></i></a></li>-->
+<!--							</ul>-->
+						</div>
+					</div>
+<!--					=====================================================-->
+				</div>
+			</div>
+		</div>
+		<style>
+			.my-paginator {
+				border: 1px solid silver;
+				padding: 15px 20px;
+			}
+			.my-paginator a {
+				font-size: 11pt
+			}
+			.my-paginator .current {
+				font-size: 12pt;
+				font-weight: bold;
+			}
+			.my-paginator .blue {
+				color: blue;
+				padding-right: 10px;
+			}
+
+			.my-paginator .red {
+				color: red;
+				padding-left: 10px;
+			}
+			.my-paginator .blue:hover {
+				color: red;
+			}
+			.my-paginator .red:hover {
+				color: blue;
+			}
+			.without-btn {
+				pointer-events: none;
+			}
+
+		</style>
+		<script src="{% static 'js/cart.js' %}" ></script>
+		<script src="{% static 'js/wish.js' %}" ></script>
+{% endblock content %}

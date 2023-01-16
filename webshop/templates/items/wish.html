@@ -1,0 +1,103 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+{% load static %}
+		<div id="breadcrumb" class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">{{ title }}</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="/">cart-items</a></li>
+							<li class="active">index</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="container">
+				<div class="row text-center">
+<!--					=====================================================-->
+					{% for item in user_wish %}
+						<div class="col-md-4 col-xs-6">
+							<div class="products row col-md-12">
+								<div class="product">
+
+									<div class="product-img">
+										<img src="/media/{{ item.product.picture }}" alt="">
+										<div class="product-label">
+											<span class="sale">-30%</span>
+											<span class="new">Новий</span>
+										</div>
+									</div>
+									<div class="product-body">
+										<p class="product-category">{{ item.product.category }}</p>
+										<h3 class="product-name"><a href="/catalog/details/{{ product.id }}">{{ item.product.name }}</a></h3>
+										<h4 class="product-price">{{ item.product.price }}0 грн.</h4>
+										<div class="product-rating">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+										</div>
+										<div class="product-btns">
+											<button class="add-to-wishlist"><i class="fa fa-heart-o without-btn"></i><span class="tooltipp">Видилити з обраного</span></button>
+											<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">порівняння</span></button>
+											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">перегляд</span><a href="/catalog/details/{{ product.id }}"></a></button>
+										</div>
+									</div>
+									<div class="add-to-cart">
+										<input class="add-to-cart1" type="hidden" value="{{ item.id }}">
+										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> До кошика</button>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					{% endfor %}
+<!--					<table id="items-table" border="1" >-->
+<!--						<thead>-->
+<!--						<tr>-->
+<!--							<th>id</th>-->
+<!--							<th>Товар</th>-->
+<!--							<th>Ціна</th>-->
+<!--							<th>Вибір</th>-->
+<!--							<th>Управління</th>-->
+<!--						</tr>-->
+<!--						</thead>-->
+<!--						<tbody>-->
+<!--							{% for item in user_wish %}-->
+<!--							<tr>-->
+<!--								<td class="id_cell">{{ item.id }}</td>-->
+<!--								<td>{{ item.product.name }}</td>-->
+<!--								<td class="price_cell">{{ item.product.price }}</td>-->
+<!--								<td>-->
+<!--									<input type="checkbox" class="check" value="yes" checked>-->
+<!--								</td>-->
+<!--								<td>-->
+<!--									<input type="hidden" value="{{ item.id }}">-->
+<!--									<button class="btn btn-sm btn-danger del-btn">Видалити</button>-->
+<!--								</td>-->
+<!--							</tr>-->
+<!--							{% endfor %}-->
+<!--						</tbody>-->
+<!--					</table>-->
+<!--					<br>-->
+<!--					<div>-->
+<!--						<h5 style="font-size: 1.75rem; margin-top: 20px">-->
+<!--							Загальна сумма: &nbsp;-->
+<!--							<span id="total" style="color: red">0.00 грн</span>-->
+<!--						</h5>-->
+<!--					</div>-->
+<!--					<p class="mb-3 text-center mt-2">-->
+<!--						<a id="bill-btn" href="" class="btn btn-success">Перейти до замовлення</a>-->
+<!--					</p>-->
+<!--					=====================================================-->
+				</div>
+			</div>
+		</div>
+
+		<script src="{% static 'js/wish_to_cart.js' %}" ></script>
+{% endblock content %}

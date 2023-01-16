@@ -1,0 +1,108 @@
+		{% load static %}
+		<header>
+			<div id="top-header">
+				<div class="container">
+					<ul class="header-links pull-left">
+						<li><a href="#"><i class="fa fa-phone"></i> +38(098)-852-99-31</a></li>
+						<li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
+						<li><a href="#"><i class="fa fa-map-marker"></i> Україна, Київ</a></li>
+					</ul>
+					<ul class="header-links pull-right">
+						<li><a href="#"><i class="fa fa-dollar"></i> Валюта</a></li>
+						<li>
+							<a href="#"><i class="fa fa-user-o"></i>
+								{% if user.is_authenticated %}
+									{{ user.username }}
+								{% else %}
+									Гість
+								{% endif %}
+							</a>
+							<input type="hidden" id="user_id" value="{{ user.id }}" />
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="header">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="header-logo">
+								<a href="/home" class="logo">
+									<img src="{% static 'img/logo.png' %}" alt="">
+								</a>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="header-search">
+								<form>
+									<select class="input-select">
+										<option value="0">Всі катероії</option>
+										<option value="1">Категорія 01</option>
+										<option value="1">Категорія 02</option>
+									</select>
+									<input class="input" placeholder="Пошук...">
+									<button class="search-btn">Пошук</button>
+								</form>
+							</div>
+						</div>
+						<div class="col-md-3 clearfix">
+							<div class="header-ctn">
+								<div>
+									<a href="/items/wish">
+										<i class="fa fa-heart-o"></i>
+										<span>Обране</span>
+										<div id="wish-count" class="qty">0</div>
+									</a>
+								</div>
+								<div class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+										<i class="fa fa-shopping-cart"></i>
+										<span>Кошик</span>
+										<div id="cart-count" class="qty">0</div>
+									</a>
+									<div class="cart-dropdown">
+										<div class="cart-list">
+<!--											<div class="product-widget">-->
+<!--												<div class="product-img">-->
+<!--													<img src="{% static 'img/product01.png' %}" alt="">-->
+<!--												</div>-->
+<!--												<div class="product-body">-->
+<!--													<h3 class="product-name"><a href="#">product name goes here</a></h3>-->
+<!--													<h4 class="product-price"><span class="qty">1x</span>$980.00</h4>-->
+<!--												</div>-->
+<!--												<button class="delete"><i class="fa fa-close"></i></button>-->
+<!--											</div>-->
+<!--											<div class="product-widget">-->
+<!--												<div class="product-img">-->
+<!--													<img src="{% static 'img/product02.png' %}" alt="">-->
+<!--												</div>-->
+<!--												<div class="product-body">-->
+<!--													<h3 class="product-name"><a href="#">product name goes here</a></h3>-->
+<!--													<h4 class="product-price"><span class="qty">3x</span>$980.00</h4>-->
+<!--												</div>-->
+<!--												<button class="delete"><i class="fa fa-close"></i></button>-->
+<!--											</div>-->
+										</div>
+										<div class="cart-summary">
+											<h5 style="font-size: 1.6rem; color: darkcyan">0 товарів обрано</h5>
+											<h4>Вартість: 0.00 грн.</h4>
+										</div>
+										<div class="cart-btns">
+											<a href="/items">Перегляд кошика</a>
+											<a href="#">Сторінка замовлення<i class="fa fa-arrow-circle-right"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="menu-toggle">
+									<a href="#">
+										<i class="fa fa-bars"></i>
+										<span>Menu</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<script src="{% static 'js/cart_display.js' %}"></script>

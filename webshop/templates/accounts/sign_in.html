@@ -1,0 +1,74 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+{% load static %}
+		<div id="breadcrumb" class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">{{ title }}</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="/">accounts</a></li>
+							<li class="active">sign_in</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="container">
+				<div class="row text-center">
+<!--					=====================================================-->
+					<h3 style="color: darkcyan">Ввійдіть в вистему</h3>
+					<form id="form2" class="my-form" action="/accounts/sign_in" method="post">
+						{% csrf_token %}
+						<div class="form-group">
+							<label for="login" class="form-label">Логін:</label>
+							<input type="text" id="login" name="login" class="form-control" placeholder="Введіть ваш логін..." required>
+						</div>
+						<div class="form-group">
+							<label for="pass1" class="form-label">Пароль:</label>
+							<input type="password" id="pass1" name="pass1" class="form-control" placeholder="Введіть ваш пароль..." required>
+						</div>
+						<div class="form-group text-center">
+                            <input type="checkbox" id="remember" name="remember" value="yes">&nbsp;
+							<label for="remember" class="form-label">Залишатись у системі</label>
+
+						</div>
+						<p>
+							<input id="submit" type="submit" value="Зберегти" class="btn btn-sm btn-success my-btn">
+							<input type="reset" value="Очистити" class="btn btn-sm btn-danger my-btn">
+						</p>
+        			</form>
+<!--					=====================================================-->
+				</div>
+			</div>
+		</div>
+    <style>
+        .my-form {
+            border: 1px solid silver;
+            border-radius: 15px;
+            margin: 20px auto;
+            margin-bottom: 30px;
+            padding: 25px 40px 15px 30px;
+            width: 40%;
+            text-align: left;
+            background: whitesmoke;
+            box-shadow: 0px 10px 30px silver;
+        }
+        .my-form > p {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .my-btn {
+            width: 120px;
+        }
+        .my-form > .form-group {
+            margin-bottom: 10px;
+        }
+        .error {
+        	font-style: italic;
+        	color: red;
+        }
+    </style>
+{% endblock content %}

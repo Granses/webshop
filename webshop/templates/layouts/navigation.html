@@ -1,0 +1,33 @@
+		<nav id="navigation">
+			<div class="container">
+				<div id="responsive-nav">
+					<ul class="main-nav nav navbar-nav">
+						<li class="active"><a href="/">Головна</a></li>
+						<li><a href="/home/about">Про сайт</a></li>
+						<li><a href="/catalog/index">Каталог</a></li>
+						<li><a href="#">Новини</a></li>
+						<li><a href="/home/contacts">Контакти</a></li>
+						<li><a href="/home/feedback">Зворотній зв'язок</a></li>
+					</ul>
+					<ul class="main-nav nav navbar-nav navbar-right">
+						<li><a href="" style="color: blue">
+							Привіт,
+							{% if user.is_authenticated %}
+								{{user.username}}
+							{% else %}
+								Гість
+							{% endif %}
+							!
+							</a>
+						</li>
+						{% if not user.is_authenticated %}
+							<li><a href="/accounts/sign_in">Вхід</a></li>
+							<li><a href="/accounts/sign_up">Реєстрація</a></li>
+						{% else %}
+							<li><a href="/accounts/sign_out">Вихід</a></li>
+							<li><a href="/accounts/profile">Профіль</a></li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+		</nav>

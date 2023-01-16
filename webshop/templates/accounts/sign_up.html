@@ -1,0 +1,82 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+{% load static %}
+		<div id="breadcrumb" class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">{{ title }}</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="/">accounts</a></li>
+							<li class="active">sign_up</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="container">
+				<div class="row text-center">
+<!--					=====================================================-->
+					<h3 style="color: darkcyan">Реєстрація</h3>
+					<form id="form1" class="my-form" action="/accounts/sign_up" method="post" onsubmit="return false">
+						{% csrf_token %}
+						<div class="form-group">
+							<label for="login" class="form-label">Логін:</label>
+							<input type="text" id="login" name="login" class="form-control" placeholder="Введіть ваш логін..." required>
+							<span id="login_err" class="error"></span>
+						</div>
+						<div class="form-group">
+							<label for="pass1" class="form-label">Пароль:</label>
+							<input type="password" id="pass1" name="pass1" class="form-control" placeholder="Введіть ваш пароль..." required>
+							<span id="pass1_err" class="error"></span>
+						</div>
+						<div class="form-group">
+							<label for="pass2" class="form-label">Повтр паролю:</label>
+							<input type="password" id="pass2" name="pass2" class="form-control" placeholder="Повторіть ваш пароль..." required>
+							<span id="pass2_err" class="error"></span>
+						</div>
+						<div class="form-group">
+							<label for="email" class="form-label">E-mail:</label>
+							<input type="email" id="email" name="email" class="form-control" placeholder="Введіть ваш email..." required>
+							<span id="email_err" class="error"></span>
+						</div>
+						<p>
+							<input id="submit" type="submit" value="Зберегти" class="btn btn-sm btn-success my-btn">
+							<input type="reset" value="Очистити" class="btn btn-sm btn-danger my-btn">
+						</p>
+        			</form>
+<!--					=====================================================-->
+				</div>
+			</div>
+		</div>
+    <style>
+        .my-form {
+            border: 1px solid silver;
+            border-radius: 15px;
+            margin: 20px auto;
+            margin-bottom: 30px;
+            padding: 25px 40px 15px 30px;
+            width: 40%;
+            text-align: left;
+            background: whitesmoke;
+            box-shadow: 0px 10px 30px silver;
+        }
+        .my-form > p {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .my-btn {
+            width: 120px;
+        }
+        .my-form > .form-group {
+            margin-bottom: 10px;
+        }
+        .error {
+        	font-style: italic;
+        	color: red;
+        }
+    </style>
+	<script src="{% static 'js/sign_up.js' %}"></script>
+{% endblock content %}

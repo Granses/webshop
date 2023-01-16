@@ -1,0 +1,28 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+		<div id="breadcrumb" class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">{{ title }}</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="/">account</a></li>
+							<li class="active">report</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="container">
+				<div class="row text-center">
+<!--					=====================================================-->
+					<h3 style="color: {{ color }}">
+                      {{ message }}
+                    </h3>
+<!--					=====================================================-->
+				</div>
+			</div>
+		</div>
+{% endblock content %}
